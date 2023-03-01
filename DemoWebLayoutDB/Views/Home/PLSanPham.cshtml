@@ -4,9 +4,9 @@
     Layout = "~/Views/Shared/_LayoutOgani.cshtml";
 }
 
-@*@using X.PagedList.Mvc.Core
-@model X.PagedList.IPagedList<TDanhMucSp>*@
-@model List<TDanhMucSp>
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<TDanhMucSp>
+@* @model List<TDanhMucSp> *@
 @foreach (var item in Model)
 {
     <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
@@ -27,8 +27,8 @@
 }
 
 
-@*<div class="product__pagination">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new{page=page}))
-</div>*@
+<div class="product__pagination">
+    @Html.PagedListPager(Model, page => Url.Action("PLSanPham", new{MaLoai = ViewBag.maloai, page = page}))
+</div>
 
 

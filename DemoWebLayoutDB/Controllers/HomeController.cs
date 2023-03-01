@@ -25,10 +25,16 @@ namespace DemoWebLayoutDB.Controllers
             return View(pagelist);
         }
 
-        public IActionResult PLSanPham(string MaLoai)
+        // component : giong partial view nhưng mạnh mẽ hơn, những chức năng phức tạp thì dùng component: menu, giỏ hàng....
+        public IActionResult PLSanPham(string MaLoai, int? page)
         {
-            var lstanpham = db.TDanhMucSps.Where(x=>x.MaLoai==MaLoai).OrderBy(x=>x.TenSp).ToList();
-            return View(lstanpham);
+            // home/plsanpham?maloai=vali (tui, balo...)
+            int pageNumber = page == null || page < 1 ? 1 : page.Value;
+            int pageSize = 8;
+            var lstanpham = db.TDanhMucSps.Where(x=>x.MaLoai==MaLoai).OrderBy(x=>x.TenSp);
+            PagedList<TDanhMucSp> pagelist = new PagedList<TDanhMucSp>(lstanpham, pageNumber, pageSize);
+            ViewBag.maLoai = MaLoai;
+            return View(pagelist);
         }
 
         public IActionResult Privacy()

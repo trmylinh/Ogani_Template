@@ -1,7 +1,16 @@
+using DemoWebLayoutDB.Models;
+using DemoWebLayoutDB.Repository;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("QlbanValiContext");
+builder.Services.AddDbContext<QlbanVaLiContext>(x => x.UseSqlServer(connectionString));
+builder.Services.AddScoped<ILoaiSPRepository, LoaiSPRepository>();
 
 var app = builder.Build();
 
