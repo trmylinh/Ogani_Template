@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DemoWebLayoutDB.Models;
 
 public partial class TDanhMucSp
 {
     public string MaSp { get; set; } = null!;
-
+    [Display(Name ="Tên sản phẩm: ")]
     public string? TenSp { get; set; }
 
     public string? MaChatLieu { get; set; }

@@ -37,6 +37,19 @@ namespace DemoWebLayoutDB.Controllers
             return View(pagelist);
         }
 
+        public IActionResult ChiTietSanPham(string maSP)
+        {
+            var sanpham = db.TDanhMucSps.SingleOrDefault(x=>x.MaSp==maSP);
+            var lstAnhSP = db.TAnhSps.Where(x => x.MaSp == maSP).ToList();
+            ViewBag.lstAnhSP = lstAnhSP;
+            return View(sanpham);
+        }
+
+        public IActionResult ProductDetail(string maSP)
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
